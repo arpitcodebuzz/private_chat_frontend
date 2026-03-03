@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useSessionLock from "../hooks/useSessionLock";
 
 export default function SecretAccess() {
+  useSessionLock(true);
+
   const nav = useNavigate();
   const [pwd, setPwd] = useState("");
   const [err, setErr] = useState("");
@@ -13,6 +16,9 @@ export default function SecretAccess() {
       setPwd("");
       return;
     }
+    try {
+      sessionStorage.setItem("access-granted", "1");
+    } catch {}
     nav("/join");
   };
 

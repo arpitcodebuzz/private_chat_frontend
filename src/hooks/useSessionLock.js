@@ -7,19 +7,17 @@ export default function useSessionLock(enabled = true) {
   const resetChat = useAppStore((s) => s.resetChat);
   const disconnectSocket = useAppStore((s) => s.disconnectSocket);
 
-  // before the patch we immediately reacted to any blur:
-//    window.addEventListener("blur", lock);
-// after the patch we hold off for half a second:
-
-let ignore = true;
-const timer = setTimeout(() => (ignore = false), 500);
-
-
   useEffect(() => {
-    if (ignore) return;
     if (!enabled) return;
 
+    // ignore any focus/visibility events that fire immediately during mount
+    let ignore = true;
+    const timer = setTimeout(() => {
+      ignore = false;
+    }, 500);
+
     const lock = () => {
+      if (ignore) return;
       disconnectSocket();
       resetChat();
       try {
@@ -32,12 +30,17 @@ const timer = setTimeout(() => (ignore = false), 500);
       if (document.visibilityState !== "visible") lock();
     };
 
-    window.addEventListener("blur", lock);
+    const onBlur = () => {
+      lock();
+    };
+
+    window.addEventListener("blur", onBlur);
     window.addEventListener("pagehide", lock);
     document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
-      window.removeEventListener("blur", lock);
+      clearTimeout(timer);
+      window.removeEventListener("blur", onBlur);
       window.removeEventListener("pagehide", lock);
       document.removeEventListener("visibilitychange", onVisibility);
     };

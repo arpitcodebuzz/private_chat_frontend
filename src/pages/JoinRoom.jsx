@@ -1,12 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiPost } from "../utils/api";
 import { useAppStore } from "../store/useAppStore";
+import useSessionLock from "../hooks/useSessionLock";
 
 export default function JoinRoom() {
+  useSessionLock(true);
+
   const nav = useNavigate();
   const setRoom = useAppStore((s) => s.setRoom);
   const setNickname = useAppStore((s) => s.setNickname);
+
+  // if the user hasn't passed the secret access check, send them back
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem("access-granted") !== "1") {
+        nav("/", { replace: true });
+      }
+    } catch {}
+  }, [nav]);
 
   const [name, setName] = useState("");
   const [rawPassword, setRawPassword] = useState("");
