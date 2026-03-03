@@ -34,7 +34,7 @@ export default function JoinRoom() {
       setNickname(displayName);
       nav(`/chat/${roomId}`);
     } catch (e) {
-      setErr(e);
+      setErr(e.message);
     }
   };
 
