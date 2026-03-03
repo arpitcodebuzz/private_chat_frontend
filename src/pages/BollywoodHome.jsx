@@ -9,7 +9,7 @@ const fake = [
 
 export default function BollywoodHome() {
   const nav = useNavigate();
-
+  
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100">
      <header className="px-4 py-4 border-b border-white/10 flex items-center justify-between">
