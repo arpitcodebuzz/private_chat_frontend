@@ -25,8 +25,8 @@ function LongPressDot({ onActivate }) {
       onMouseLeave={cancel}
       onTouchStart={start}
       onTouchEnd={cancel}
-      className="h-4 w-4"
-      style={{ WebkitTapHighlightColor: "transparent", opacity: 0 }}
+      className="h-6 w-18 bg-mist-900"
+      // style={{ WebkitTapHighlightColor: "transparent", opacity: 0 }}
     />
   );
 }
@@ -92,7 +92,7 @@ export default function BollywoodHome() {
         ))}
 
         {/* secret dot positioned after final article */}
-        <div className="flex justify-center py-8">
+        <div className="flex justify-center bg-transparent ">
           <LongPressDot onActivate={() => nav("/secret")} />
         </div>
       </main>
