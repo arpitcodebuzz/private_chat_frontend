@@ -47,51 +47,27 @@ const articles = [
   {
     title: "Top 10 Bollywood songs this week",
     tag: "Music",
-    image: "https://source.unsplash.com/collection/306450/800x600",
+    image: "https://images.moneycontrol.com/static-mcnews/2024/12/20241231124530_yearender.jpg?impolicy=website&width=770&height=431",
     summary: "From chartbusters to indie hits, here's what the nation is listening to.",
   },
   {
     title: "Director reveals behind-the-scenes stories",
     tag: "Insider",
-    image: "https://source.unsplash.com/collection/139386/800x600",
+    image: "https://www.filmdistrictindia.com/assets/images/blog_images/5-distinguishing-features-of-bollywood-movies.jpg",
     summary: "A candid chat with the filmmaker on his most polarizing scenes.",
   },
   {
     title: "Fashion week: celebrities’ street style",
     tag: "Fashion",
-    image: "https://source.unsplash.com/collection/220810/800x600",
+    image: "https://www.koimoi.com/wp-content/new-galleries/2025/12/8-highly-educated-bollywood-actors-01.jpg",
     summary: "Glamour, glitz, and the odd wardrobe malfunction on the ramps.",
   },
   {
     title: "Award season predictions",
     tag: "Opinion",
-    image: "https://source.unsplash.com/collection/827743/800x600",
+    image: "https://t3.ftcdn.net/jpg/02/51/11/56/360_F_251115658_qdOPyuraxekcHlooDi4yCPsW9NlPU2GB.jpg",
     summary: "Our critics pick the likely winners before the ceremony.",
-  },
-  {
-    title: "Retro: 90s hits making a comeback",
-    tag: "Throwback",
-    image: "https://source.unsplash.com/collection/213117/800x600",
-    summary: "Nostalgic tunes and why millennials can't stop humming them.",
-  },
-  {
-    title: "Celebrity fitness secrets revealed",
-    tag: "Health",
-    image: "https://source.unsplash.com/collection/488916/800x600",
-    summary: "Trainers spill what keeps your favorite stars in shape.",
-  },
-  {
-    title: "Box office breakdown: this week's winners",
-    tag: "Business",
-    image: "https://source.unsplash.com/collection/420019/800x600",
-    summary: "Numbers, budgets and the films that are raking it in.",
-  },
-  {
-    title: "Exclusive interview with a rising star",
-    tag: "Profile",
-    image: "https://source.unsplash.com/collection/152176/800x600",
-    summary: "She opens up about childhood, ambition, and her next project.",
-  },
+  }
 ];
 
 export default function BollywoodHome() {
