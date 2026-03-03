@@ -35,7 +35,8 @@ export default function CreateRoom() {
       setNickname(displayName);
       nav(`/chat/${roomId}`);
     } catch (e) {
-      setErr(e.message);
+      console.error(e);
+      setErr(e.toString());
     } finally {
       setLoading(false);
     }

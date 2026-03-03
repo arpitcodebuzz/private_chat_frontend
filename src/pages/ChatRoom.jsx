@@ -43,7 +43,8 @@ export default function ChatRoom() {
         const res = await apiGet(`/api/rooms/${roomId}/messages?limit=120`);
         setMessages(res.data || []);
       } catch (e) {
-        setStatus(e.message);
+        console.error(e);
+        setStatus(e.toString());
       }
     })();
   }, [canUse, roomId, nav, setMessages]);
