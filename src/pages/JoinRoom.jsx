@@ -24,9 +24,11 @@ export default function JoinRoom() {
   const [rawPassword, setRawPassword] = useState("");
   const [nickname, setNick] = useState("");
   const [err, setErr] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const submit = async () => {
     setErr("");
+    setLoading(true);
     try {
       const res = await apiPost("/api/rooms/join", { name, rawPassword, nickname });
       const { roomId, roomName, displayName } = res.data;
@@ -35,6 +37,8 @@ export default function JoinRoom() {
       nav(`/chat/${roomId}`);
     } catch (e) {
       setErr(e.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -70,9 +74,10 @@ export default function JoinRoom() {
 
           <button
             onClick={submit}
+            disabled={loading}
             className="w-full rounded-xl bg-white text-neutral-950 px-3 py-2 font-medium"
           >
-            Join
+            {loading ? "Please wait..." : "Join"}
           </button>
 
           <button

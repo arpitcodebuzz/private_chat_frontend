@@ -26,6 +26,7 @@ export default function ChatRoom() {
 
   const [text, setText] = useState("");
   const [status, setStatus] = useState("");
+  const [sending, setSending] = useState(false);
 
   const listRef = useRef(null);
 
@@ -83,10 +84,12 @@ export default function ChatRoom() {
 
   const send = () => {
     const t = text.trim();
-    if (!t || !socket) return;
+    if (!t || !socket || sending) return;
+    setSending(true);
     socket.emit("new_message", { roomId, text: t });
     setText("");
     socket.emit("stop_typing", { roomId });
+    setSending(false);
   };
 
   const onChange = (v) => {
@@ -155,9 +158,10 @@ export default function ChatRoom() {
           />
           <button
             onClick={send}
+            disabled={sending || text.trim().length === 0}
             className="rounded-full bg-white text-neutral-950 px-4 py-2 font-medium"
           >
-            Send
+            {sending ? "…" : "Send"}
           </button>
         </div>
       </div>
